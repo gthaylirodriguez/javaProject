@@ -31,4 +31,20 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
+    public Ticket update(String ticketId, Ticket ticket)
+    {
+        Ticket ticketR = ticketRepository.get(ticketId);
+        if (ticketR == null){
+            return null;
+        }
+
+        ticket.setTicketId(ticketId);
+        return ticketRepository.save(ticket);
+    }
+
+    public Ticket deleteTicket(String ticketId)
+    {
+        return ticketRepository.delete(ticketId);
+    }
+
 }
