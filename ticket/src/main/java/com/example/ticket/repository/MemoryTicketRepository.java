@@ -36,7 +36,12 @@ public class MemoryTicketRepository implements ITicketRepository {
     public Ticket save(Ticket ticket) {
         if (ticket.getTicketId()== null)
         {
-            ticket.setTicketId(String.valueOf(System.currentTimeMillis()));
+            try {
+                Thread.sleep(1000);
+                ticket.setTicketId(String.valueOf(System.currentTimeMillis()));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return ticketsMap.put(ticket.getTicketId(), ticket);
        // throw new UnsupportedOperationException("Unimplemented method 'update'");
